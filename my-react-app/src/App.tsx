@@ -1,26 +1,33 @@
-import { useState } from "react";
-import "./App.css";
 import { Header } from "./cmp/header";
-import { GenderSelect } from "./cmp/genderSelect";
-import { Box, Button } from "@mui/material";
-import { Slideshow } from "./cmp/slideshow";
+import { Box } from "@mui/material";
+import { Card } from "./cmp/atomsNOUE/Card";
 
 function App() {
   return (
-    <div>
-      <Header></Header>
+    <Box
+      sx={{
+        backgroundColor: "white", // 背景色を白に設定
+        margin: 0, // 余白をゼロに設定
+        padding: 0, // パディングをゼロに設定
+        minHeight: "100vh", // 画面全体の高さを最低でも100%に
+        width: "100%", // 横幅も100%に設定
+        display: "flex", // フレックスボックスを使用
+        flexDirection: "column", // 要素を縦に並べる
+      }}
+    >
+      <Header />
       <Box
         sx={{
-          marginTop: "64px", // AppBarの高さ分のマージンを設定
-          display: "flex", // 横並び
-          gap: 2, // 要素間の間隔
+          display: "flex", // フレックスボックスを使用
+          justifyContent: "center", // 子要素（Card）を横方向に中央揃え
+          alignItems: "center", // 子要素（Card）を縦方向にも中央揃え
+          height: "100%", // 親要素（Box）の高さを100%に
         }}
       >
-        <GenderSelect></GenderSelect>
-        <Button>ゾゾタウンからのお知らせ</Button>
+        <Card />
       </Box>
-      <Slideshow></Slideshow>
-    </div>
+      <p>aaaaaaaa</p>
+    </Box>
   );
 }
 
