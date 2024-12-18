@@ -1,11 +1,9 @@
-import { useState } from "react";
 import { Header } from "./cmp/atoms/header";
 import { GenderSelect } from "./cmp/molecules/genderSelect";
 import { Box, Button } from "@mui/material";
 import { Slideshow } from "./cmp/molecules/slideshow";
 import { CssBaseline } from "@mui/material";
 import { SectionList } from "./cmp/organisms/SectionList";
-import { ProductCard } from "./cmp/molecules/ProductCard";
 
 function App() {
   return (
@@ -32,14 +30,13 @@ function App() {
           sx={{
             backgroundColor: "#fffafa",
             width: "100%",
-            height: "500px",
+            height: "100%",
             marginTop: "80px",
             display: "flex",
             flexDirection: "row", // 横並びに設定
           }}
         >
           <SectionList></SectionList>
-          <ProductCard></ProductCard>
         </Box>
       </CssBaseline>
     </div>

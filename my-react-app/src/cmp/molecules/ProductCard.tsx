@@ -1,11 +1,15 @@
 import { ProductImage } from "../atoms/ProductImage";
 import { ProductDescription } from "../atoms/ProductDescription";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 
-export const ProductCard = () => {
+interface ProductCardProps {
+  ProductImages: string;
+}
+
+export const ProductCard: React.FC<ProductCardProps> = ({ ProductImages }) => {
   return (
     <Box>
-      <ProductImage></ProductImage>
+      <ProductImage ProductImage={ProductImages}></ProductImage>
       <ProductDescription></ProductDescription>
     </Box>
   );

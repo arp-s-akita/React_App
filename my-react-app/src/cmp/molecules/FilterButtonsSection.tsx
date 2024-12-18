@@ -6,14 +6,6 @@ interface FilterButtonsSectionProps {
   category: string[];
 }
 
-const sectionItem = [
-  "ブランドから探す",
-  "公式ショップから探す",
-  "ランキングから探す",
-  "セール対象から探す",
-  "クーポン対象から探す",
-];
-
 export const FilterButtonsSection: React.FC<FilterButtonsSectionProps> = ({
   sectionName,
   category,
