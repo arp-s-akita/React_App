@@ -2,10 +2,10 @@ import React from "react";
 import { Box } from "@mui/material";
 
 const images = [
-  "https://via.placeholder.com/600x300/ff7f7f/333333?text=Image+1",
-  "https://via.placeholder.com/600x300/7f7fff/333333?text=Image+2",
-  "https://via.placeholder.com/600x300/7fff7f/333333?text=Image+3",
-  "https://via.placeholder.com/600x300/fff77f/333333?text=Image+4",
+  "/slideImage/slide1.png",
+  "/slideImage/slide2.png",
+  "/slideImage/slide3.png",
+  "/slideImage/slide4.png",
 ];
 
 export const Slideshow = () => {

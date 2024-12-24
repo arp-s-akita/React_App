@@ -1,18 +1,18 @@
-import { ProductCard } from "../molecules/ProductCard";
+import { ProductDisplay } from "./formatProductDisplay";
 import { Box, Typography } from "@mui/material";
 import React from "react";
 
 interface ProductCardListProps {
   ListName: string;
-  ProductsItem: string[];
 }
 
 export const ProductCardList: React.FC<ProductCardListProps> = ({
   ListName,
 }) => {
   return (
-    <Box>
+    <Box sx={{ gap: 0, margin: 0 }}>
       <Typography>{ListName}</Typography>
+      <ProductDisplay></ProductDisplay>
     </Box>
   );
 };

@@ -4,6 +4,7 @@ import { Box, Button } from "@mui/material";
 import { Slideshow } from "./cmp/molecules/slideshow";
 import { CssBaseline } from "@mui/material";
 import { SectionList } from "./cmp/organisms/SectionList";
+import { ProductCardList } from "./cmp/organisms/ProductList";
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
 
         <Box
           sx={{
-            backgroundColor: "#fffafa",
+            backgroundColor: "#f8f8f8",
             width: "100%",
             height: "100%",
             marginTop: "80px",
@@ -37,6 +38,9 @@ function App() {
           }}
         >
           <SectionList></SectionList>
+          <Box sx={{ marginLeft: "100px" }}>
+            <ProductCardList ListName="おすすめ"></ProductCardList>
+          </Box>
         </Box>
       </CssBaseline>
     </div>
