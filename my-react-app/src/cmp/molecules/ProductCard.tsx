@@ -1,6 +1,7 @@
 import { ProductImage } from "../atoms/ProductImage";
 import { ProductDescription } from "../atoms/ProductDescription";
 import { Box } from "@mui/material";
+import { ProductBadge } from "../atoms/ProductBadge";
 
 interface ProductCardProps {
   ProductImages: string;
@@ -10,6 +11,8 @@ interface ProductCardProps {
   productColor: string;
   leftRadius: boolean;
   rightRadius: boolean;
+  discountValue: string;
+  percentDiscount: string;
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({
@@ -20,14 +23,21 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   productColor,
   leftRadius,
   rightRadius,
+  discountValue,
+  percentDiscount,
 }) => {
   return (
     <Box
       sx={{
-        width: "170px",
-        height: "auto",
+        width: "auto",
+        height: "360px",
       }}
     >
+      <ProductBadge
+        discountValue={discountValue}
+        percentDiscount={percentDiscount}
+      ></ProductBadge>
+
       <ProductImage
         ProductImage={ProductImages}
         ImageTopRightRadius={rightRadius ? true : false}

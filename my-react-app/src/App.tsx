@@ -38,7 +38,7 @@ function App() {
           }}
         >
           <SectionList></SectionList>
-          <Box sx={{ marginLeft: "100px" }}>
+          <Box sx={{ marginLeft: "50px" }}>
             <ProductCardList ListName="おすすめ"></ProductCardList>
           </Box>
         </Box>

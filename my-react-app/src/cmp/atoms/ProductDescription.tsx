@@ -31,14 +31,16 @@ export const ProductDescription: React.FC<ProductDescriptionProps> = ({
           gap: 0,
         }}
       >
-        <Typography sx={{ fontWeight: "bold", m: 0, p: 0 }}>
-          {brandName}
-        </Typography>
-        <Typography sx={{ m: 0, p: 0 }}>{productCategory}</Typography>
-        <Typography sx={{ color: "red", m: 0, p: 0 }}>
-          {productValue}
-        </Typography>
-        <Typography sx={{ m: 0, p: 0 }}>{productColor}</Typography>
+        <Box sx={{ marginLeft: "15px", gap: "15px" }}>
+          <Typography sx={{ fontWeight: "bold", m: 0, p: 0 }}>
+            {brandName}
+          </Typography>
+          <Typography sx={{ m: 0, p: 0 }}>{productCategory}</Typography>
+          <Typography sx={{ color: "#ed293e", m: 0, p: 0 }}>
+            {productValue}
+          </Typography>
+          <Typography sx={{ m: 0, p: 0 }}>{productColor}</Typography>
+        </Box>
       </Box>
     </>
   );

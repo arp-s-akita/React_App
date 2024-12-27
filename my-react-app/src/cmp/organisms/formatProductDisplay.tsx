@@ -1,29 +1,59 @@
 import { ProductCard } from "../molecules/ProductCard";
 import { Box, Button } from "@mui/material";
 import React, { useState } from "react";
-import { products } from "./productData";
+//import { products } from "./productData";
 
-export const ProductDisplay = () => {
-  const [rightShift, moveShift] = useState(false);
+type Product = {
+  id: number;
+  brandName: string;
+  productName: string;
+  productPrice: string;
+  currency: string;
+  availableColors: number;
+  colors: string[];
+  productCategory: string;
+  imageUrl: string;
+  discountCoupon: string;
+  percentDiscount: string;
+};
+
+type ProductCardProps = {
+  products: Product[];
+};
+
+export const ProductDisplay: React.FC<ProductCardProps> = ({ products }) => {
+  const [shiftAmount, setShiftAmount] = useState(0); // スライド量を管理
+  const cardWidth = 170; // 各カードの幅
+  const visibleWidth = 170 * 4.3; // 表示される範囲の幅
+  const maxShift = -(products.length * cardWidth - visibleWidth); // 最大スライド量
 
   const handleRight = () => {
-    moveShift(!rightShift); // スライドの状態を反転
+    setShiftAmount((prev) => Math.max(prev - cardWidth, maxShift)); // スライドを右に
+  };
+
+  const handleLeft = () => {
+    setShiftAmount((prev) => Math.min(prev + cardWidth, 0)); // スライドを左に
   };
 
   return (
-    <Box sx={{ width: "auto", overflow: "hidden", position: "relative" }}>
+    <Box
+      sx={{
+        width: `${visibleWidth}px`, // 表示領域を400pxに設定
+        overflow: "hidden", // 表示領域外を隠す
+        position: "relative",
+      }}
+    >
       {/* 商品カードを囲む親要素 */}
       <Box
         sx={{
           display: "flex", // 横並びに配置
           gap: 0, // 各アイテム間の隙間
           transition: "transform 0.5s ease", // スライドアニメーション
-          position: "relative", // 位置を相対的に設定
-          transform: rightShift ? "translateX(-200px)" : "translateX(0)", // スライド効果
-          zIndex: 1,
+          transform: `translateX(${shiftAmount}px)`, // スライド効果
+          width: "900px",
         }}
       >
-        {products.map((product) => (
+        {products.map((product, index) => (
           <ProductCard
             key={product.id}
             ProductImages={product.imageUrl}
@@ -31,24 +61,48 @@ export const ProductDisplay = () => {
             productColor={product.colors[0]}
             productValue={product.productPrice}
             brandName={product.brandName}
-            leftRadius={false}
-            rightRadius={false}
+            leftRadius={index === 0}
+            rightRadius={index === products.length - 1}
+            percentDiscount={product.percentDiscount}
+            discountValue={product.discountCoupon}
           />
         ))}
       </Box>
 
-      {/* ボタンを中央に配置 */}
+      {/* 左矢印ボタン */}
+      <Button
+        onClick={handleLeft}
+        variant="contained"
+        sx={{
+          position: "absolute",
+          top: "45%",
+          left: "10px",
+          backgroundColor: "rgba(255, 255, 255, 0.7)",
+          borderRadius: "50%", // 完全な円形に
+          width: "50px",
+          height: "50px",
+          minWidth: "unset", // デフォルトのminWidthをリセット
+        }}
+        disabled={shiftAmount === 0} // 左端ではボタン無効化
+      >
+        ＜
+      </Button>
+
+      {/* 右矢印ボタン */}
       <Button
         onClick={handleRight}
         variant="contained"
         sx={{
-          position: "absolute", // 画像や商品カードに重ならないように絶対配置
-          top: "50%", // 画像の中央に配置
-          right: "20%",
-          transform: "translate(-50%, -50%)", // ボタンを中央に持ってくる
-          zIndex: 10, // ボタンを最前面に表示
-          backgroundColor: "transparent",
+          position: "absolute",
+          top: "45%",
+          right: "10px",
+          backgroundColor: "rgba(255, 255, 255, 0.7)",
+          borderRadius: "50%", // 完全な円形に
+          width: "50px",
+          height: "50px",
+          minWidth: "unset", // デフォルトのminWidthをリセット
         }}
+        disabled={shiftAmount === maxShift} // 右端ではボタン無効化
       >
         ＞
       </Button>
