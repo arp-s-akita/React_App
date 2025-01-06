@@ -77,15 +77,18 @@ export const SectionList = () => {
 
   return (
     <Box>
-      <FilterButtonsSection
-        sectionName="探す"
-        category={search}
-      ></FilterButtonsSection>
-
-      <FilterButtonsSection
-        sectionName="カテゴリーから探す"
-        category={categories}
-      ></FilterButtonsSection>
+      <Box sx={{ marginTop: "15px" }}>
+        <FilterButtonsSection
+          sectionName="探す"
+          category={search}
+        ></FilterButtonsSection>
+      </Box>
+      <Box sx={{ marginTop: "15px" }}>
+        <FilterButtonsSection
+          sectionName="カテゴリーから探す"
+          category={categories}
+        ></FilterButtonsSection>
+      </Box>
     </Box>
   );
 };
