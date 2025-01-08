@@ -1,16 +1,33 @@
 import { Box, Typography, Button } from "@mui/material";
 import React from "react";
-import { ProductDetailSizeStockList } from "../cmp/organisms/productDetailSizeStockList";
+import { ProductDetailSizeStockList } from "../cmp/organisms/productDetails/productDetailSizeStockList";
 import { ItemDescription } from "../cmp/molecules/productDetails/ItemDescription";
-import { ProductDetailMainImageSlide } from "../cmp/molecules/productDetails/productDetailMainImageSlide";
+import { ProductDetailImageSlide } from "../cmp/molecules/productDetails/productDetailImageSlide";
+import { ProductDetailMainImageSlide } from "../cmp/molecules/productDetails/productDetailMainSlide";
+import { useLocation } from "react-router-dom";
+import { productsStockRE } from "../productData/productStockData";
 
 export const ProductDetailsPage = () => {
+  const location = useLocation();
+  const id = location.state as string;
+
+  console.log("値", id);
+
+  const stockID = location.state;
+
+  const product = productsStockRE.find((product) => product.id === stockID);
+  console.log(product);
+
+  if (!product) {
+    return <div>Product not found</div>;
+  }
+
   return (
     <Box
       sx={{
         backgroundColor: "#ffffff",
         width: "100%",
-        height: "2000px",
+        height: "auto",
         marginTop: "80px",
         display: "flex",
         flexDirection: "row", // 横並びに設定
@@ -19,17 +36,15 @@ export const ProductDetailsPage = () => {
       }}
     >
       <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-        <img
-          src="/public/demoStockImage/DemoMainImage.jpg"
-          alt=""
-          style={{ width: "500", height: "600px" }}
-        />
-
-        <ProductDetailMainImageSlide></ProductDetailMainImageSlide>
+        <ProductDetailMainImageSlide
+          AmoutID={0}
+          productID={stockID}
+        ></ProductDetailMainImageSlide>
+        <ProductDetailImageSlide ProducutId={stockID}></ProductDetailImageSlide>
       </Box>
       <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-        <BrandLabel brandName="moment+" img="/icon/brandIcon.png" />
-        <BrandLabel brandName="moment+" img="/icon/couponIcon.png" />
+        <BrandLabel brandName={product.brandname} img="/icon/brandIcon.png" />
+        <BrandLabel brandName={product.brandname} img="/icon/couponIcon.png" />
 
         <Typography
           variant="h1"
@@ -43,7 +58,7 @@ export const ProductDetailsPage = () => {
             width: "400px",
           }}
         >
-          取外し可能ファーティペット付きヴィンテージライクマットフェイクレザーブルゾン
+          {product.name}
         </Typography>
 
         <Typography
@@ -56,7 +71,7 @@ export const ProductDetailsPage = () => {
             height: "14px",
           }}
         >
-          お気に入りアイテム登録者数:{100}人
+          お気に入りアイテム登録者数:{product.favorite}人
         </Typography>
         {/* <Box
           sx={{
@@ -77,7 +92,7 @@ export const ProductDetailsPage = () => {
             30%OFF
           </Typography>
         </Box> */}
-        <Value></Value>
+        <Value value={product.value}></Value>
         <Box
           sx={{
             height: "50px",
@@ -103,7 +118,9 @@ export const ProductDetailsPage = () => {
           ></InformationLabel>
         </Box>
 
-        <ProductDetailSizeStockList></ProductDetailSizeStockList>
+        <ProductDetailSizeStockList
+          productID={stockID}
+        ></ProductDetailSizeStockList>
         <ItemDescription></ItemDescription>
       </Box>
     </Box>
@@ -142,7 +159,11 @@ const BrandLabel: React.FC<brandLabelProps> = ({ brandName, img }) => {
   );
 };
 
-const Value = () => {
+type ValueProps = {
+  value: string;
+};
+
+const Value: React.FC<ValueProps> = (props) => {
   return (
     <Box
       sx={{
@@ -166,7 +187,7 @@ const Value = () => {
           lineHeight: "25px",
         }}
       >
-        ¥7,990
+        {props.value}
       </Typography>
       <Typography
         sx={{

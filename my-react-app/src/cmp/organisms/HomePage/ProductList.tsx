@@ -1,7 +1,7 @@
 import { ProductDisplay } from "./formatProductDisplay";
 import { Box, Typography } from "@mui/material";
 import React from "react";
-import { products, discountProducts } from "./productData";
+import { products, discountProducts } from "../../../productData/productData";
 
 interface ProductCardListProps {
   ListName: string;

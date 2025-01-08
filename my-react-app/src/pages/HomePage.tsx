@@ -1,15 +1,14 @@
-import { Header } from "../cmp/atoms/header";
-import { GenderSelect } from "../cmp/molecules/Home/genderSelect";
+import { Header } from "../cmp/atoms/HomePage/header";
+import { GenderSelect } from "../cmp/molecules/Homepage/genderSelect";
 import { Box, Button } from "@mui/material";
-import { Slideshow } from "../cmp/molecules/Home/slideshow";
+import { Slideshow } from "../cmp/molecules/Homepage/slideshow";
 import { CssBaseline } from "@mui/material";
-import { SectionList } from "../cmp/organisms/SectionList";
-import { ProductCardList } from "../cmp/organisms/ProductList";
+import { SectionList } from "../cmp/organisms/HomePage/SectionList";
+import { ProductCardList } from "../cmp/organisms/HomePage/ProductList";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const HomePage = () => {
-  const navigate = useNavigate();
-
   return (
     <div>
       <CssBaseline>
@@ -43,9 +42,14 @@ export const HomePage = () => {
           <SectionList></SectionList>
           <Box sx={{ marginLeft: "50px", marginTop: "15px" }}>
             <ProductCardList ListName="おすすめ"></ProductCardList>
-            <Button onClick={() => navigate("/ProductDetailsPage")}>
-              もっとみる
-            </Button>
+
+            <Link
+              to="/ProductDetailsPage"
+              state="1"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              飛ぶ
+            </Link>
           </Box>
         </Box>
       </CssBaseline>

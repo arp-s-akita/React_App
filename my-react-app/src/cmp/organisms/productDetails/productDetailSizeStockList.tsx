@@ -1,5 +1,6 @@
-import { ProductDetailSizeStock } from "../molecules/productDetails/productDetailSizeStock";
+import { ProductDetailSizeStock } from "../../molecules/productDetails/productDetailSizeStock";
 import { Box } from "@mui/material";
+import { productsImage } from "../../../productData/productImageData";
 
 const products = [
   {
@@ -52,12 +53,15 @@ const products = [
   },
 ];
 
-export const ProductDetailSizeStockList = () => {
+type Product = {
+  productID: string;
+};
+
+export const ProductDetailSizeStockList: React.FC<Product> = (props) => {
   //IDを指定
-  const ID = "0";
 
   //IDに一致する商品を取得
-  const product = products.find((product) => product.id === ID);
+  const product = products.find((product) => product.id === props.productID);
 
   if (!product) {
     return <div>商品が見つかりません</div>;
