@@ -1,17 +1,25 @@
 import React from "react";
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useState } from "react";
 
-export const ProductDetailSizeStock = () => {
+type ProductDetailSizeStockProps = {
+  stockImg: string;
+  color: string;
+  size: string;
+  stock: string;
+};
+
+export const ProductDetailSizeStock: React.FC<ProductDetailSizeStockProps> = (
+  props
+) => {
   return (
     <Box
       sx={{
         display: "flex",
         flexDirection: "column",
         gap: 1,
-        width: "100%",
-        height: "100%",
-        marginTop: "80px",
+        width: "400px",
+        height: "85px",
         justifyContent: "center",
         alignItems: "center",
       }}
@@ -23,15 +31,15 @@ export const ProductDetailSizeStock = () => {
           gap: 1,
           width: "100%",
           height: "100%",
-          justifyContent: "center",
+          justifyContent: "left",
           alignItems: "center",
         }}
       >
-        <StockImage
-          stockImg="/demoStockImage/DemoStockImage.jpg"
-          color="ブラック"
-        />
-        <StockSize size="S" stock="在庫あり" />
+        {" "}
+        {props.stockImg === "" ? null : (
+          <StockImage stockImg={props.stockImg} color={props.color} />
+        )}
+        <StockSize size={props.size} stock={props.stock} />
         <CartButton />
         <FavoriteButton></FavoriteButton>
       </Box>
@@ -46,7 +54,14 @@ type StockImageProps = {
 
 const StockImage: React.FC<StockImageProps> = (props) => {
   return (
-    <Box sx={{ marginRight: "20px" }}>
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "column",
+      }}
+    >
       <img
         src={props.stockImg}
         alt=""
@@ -64,9 +79,18 @@ type StockSizeProps = {
 
 const StockSize: React.FC<StockSizeProps> = (props) => {
   return (
-    <Typography sx={{ fontSize: "12px", marginRight: "20px" }}>
-      {props.size}/{props.stock}
-    </Typography>
+    <Box
+      sx={{
+        display: "flex",
+        alignContent: "center",
+        justifyContent: "center",
+        width: "80px",
+      }}
+    >
+      <Typography sx={{ fontSize: "12px", alignItems: "center" }}>
+        {props.size}/{props.stock}
+      </Typography>
+    </Box>
   );
 };
 
@@ -101,7 +125,7 @@ const FavoriteButton = () => {
   };
 
   return (
-    <Box sx={{ justifyContent: "center", alignItems: "center" }}>
+    <Box sx={{ justifyContent: "right", alignItems: "center" }}>
       <img
         src={isFavorite ? "/icon/FavoriteIcon.png" : "/icon/UnFavoriteIcon.png"}
         alt=""

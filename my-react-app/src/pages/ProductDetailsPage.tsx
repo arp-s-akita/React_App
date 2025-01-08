@@ -1,6 +1,8 @@
 import { Box, Typography, Button } from "@mui/material";
 import React from "react";
-import { ProductDetailSizeStock } from "../cmp/molecules/productDetailSizeStock";
+import { ProductDetailSizeStockList } from "../cmp/organisms/productDetailSizeStockList";
+import { ItemDescription } from "../cmp/molecules/productDetails/ItemDescription";
+import { ProductDetailMainImageSlide } from "../cmp/molecules/productDetails/productDetailMainImageSlide";
 
 export const ProductDetailsPage = () => {
   return (
@@ -8,20 +10,23 @@ export const ProductDetailsPage = () => {
       sx={{
         backgroundColor: "#ffffff",
         width: "100%",
-        height: "100%",
+        height: "2000px",
         marginTop: "80px",
         display: "flex",
         flexDirection: "row", // 横並びに設定
-        justifyContent: "center", // 水平方向の中央寄せ
-        alignItems: "center", // 垂直方向の中央寄せ
         gap: 10, // 要素間の隙間（px単位やthemeベースの単位）
+        justifyContent: "center",
       }}
     >
-      <img
-        src="/public/demoStockImage/DemoMainImage.jpg"
-        alt=""
-        style={{ width: "500", height: "600px" }}
-      />
+      <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
+        <img
+          src="/public/demoStockImage/DemoMainImage.jpg"
+          alt=""
+          style={{ width: "500", height: "600px" }}
+        />
+
+        <ProductDetailMainImageSlide></ProductDetailMainImageSlide>
+      </Box>
       <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
         <BrandLabel brandName="moment+" img="/icon/brandIcon.png" />
         <BrandLabel brandName="moment+" img="/icon/couponIcon.png" />
@@ -34,10 +39,13 @@ export const ProductDetailsPage = () => {
             fontWeight: 900,
             textAlign: "left",
             lineHeight: "28px",
+            height: "58px",
+            width: "400px",
           }}
         >
-          ヴィンテージライクマットフェイクレザーブルゾン
+          取外し可能ファーティペット付きヴィンテージライクマットフェイクレザーブルゾン
         </Typography>
+
         <Typography
           sx={{
             fontFamily: `"Noto Sans JP", sans-serif`,
@@ -45,11 +53,12 @@ export const ProductDetailsPage = () => {
             fontWeight: 500,
             textAlign: "left",
             color: "#a0a0a0",
+            height: "14px",
           }}
         >
           お気に入りアイテム登録者数:{100}人
         </Typography>
-        <Box
+        {/* <Box
           sx={{
             backgroundColor: "#ed293e",
             width: "90px",
@@ -67,24 +76,35 @@ export const ProductDetailsPage = () => {
           >
             30%OFF
           </Typography>
-        </Box>
+        </Box> */}
         <Value></Value>
-        <InformationLabel
-          iconImg="/icon/pointIcon.png"
-          information="ZOZOCARDなら5%還元"
-          redLineText="490pt"
-          otherText=""
-          detail="詳細"
-        ></InformationLabel>
-        <InformationLabel
-          iconImg="/icon/trackIcon.png"
-          information="即日配送なら"
-          redLineText="最短明日の午前中"
-          otherText="にお届けします。"
-          detail=""
-        ></InformationLabel>
+        <Box
+          sx={{
+            height: "50px",
+            display: "flex",
+            flexDirection: "column",
+            gap: 1,
+            marginTop: "10px",
+          }}
+        >
+          <InformationLabel
+            iconImg="/icon/pointIcon.png"
+            information="ZOZOCARDなら5%還元"
+            redLineText="490pt"
+            otherText=""
+            detail="詳細"
+          ></InformationLabel>
+          <InformationLabel
+            iconImg="/icon/trackIcon.png"
+            information="即日配送なら"
+            redLineText="最短明日の午前中"
+            otherText="にお届けします。"
+            detail=""
+          ></InformationLabel>
+        </Box>
 
-        <ProductDetailSizeStock></ProductDetailSizeStock>
+        <ProductDetailSizeStockList></ProductDetailSizeStockList>
+        <ItemDescription></ItemDescription>
       </Box>
     </Box>
   );
@@ -128,8 +148,10 @@ const Value = () => {
       sx={{
         display: "flex",
         justifyContent: "left",
-        alignItems: "left",
+        alignItems: "center",
         gap: 1,
+
+        marginTop: "25px",
       }}
     >
       <Typography
@@ -144,7 +166,7 @@ const Value = () => {
           lineHeight: "25px",
         }}
       >
-        ¥ 10000
+        ¥7,990
       </Typography>
       <Typography
         sx={{

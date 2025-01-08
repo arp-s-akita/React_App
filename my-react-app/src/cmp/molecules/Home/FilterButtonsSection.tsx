@@ -1,4 +1,4 @@
-import { FilterButton } from "../atoms/FilterButtons";
+import { FilterButton } from "../../atoms/FilterButtons";
 import { Box, Typography } from "@mui/material";
 
 interface FilterButtonsSectionProps {

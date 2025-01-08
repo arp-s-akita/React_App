@@ -1,6 +1,5 @@
-import { Button, Box } from "@mui/material";
-import { FilterButtonsSection } from "../molecules/FilterButtonsSection";
-
+import { Box } from "@mui/material";
+import { FilterButtonsSection } from "../molecules/Home/FilterButtonsSection";
 export const SectionList = () => {
   const search = [
     "ブランドから探す",

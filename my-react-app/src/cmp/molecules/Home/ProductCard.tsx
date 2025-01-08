@@ -1,7 +1,7 @@
-import { ProductImage } from "../atoms/ProductImage";
-import { ProductDescription } from "../atoms/ProductDescription";
+import { ProductImage } from "../../atoms/ProductImage";
+import { ProductDescription } from "../../atoms/ProductDescription";
 import { Box } from "@mui/material";
-import { ProductBadge } from "../atoms/ProductBadge";
+import { ProductBadge } from "../../atoms/ProductBadge";
 
 interface ProductCardProps {
   ProductImages: string;

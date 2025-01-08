@@ -1,4 +1,4 @@
-import { ProductCard } from "../molecules/ProductCard";
+import { ProductCard } from "../molecules/Home/ProductCard";
 import { Box, Button } from "@mui/material";
 import React, { useState } from "react";
 //import { products } from "./productData";

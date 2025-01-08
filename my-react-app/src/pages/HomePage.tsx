@@ -1,7 +1,7 @@
 import { Header } from "../cmp/atoms/header";
-import { GenderSelect } from "../cmp/molecules/genderSelect";
+import { GenderSelect } from "../cmp/molecules/Home/genderSelect";
 import { Box, Button } from "@mui/material";
-import { Slideshow } from "../cmp/molecules/slideshow";
+import { Slideshow } from "../cmp/molecules/Home/slideshow";
 import { CssBaseline } from "@mui/material";
 import { SectionList } from "../cmp/organisms/SectionList";
 import { ProductCardList } from "../cmp/organisms/ProductList";

@@ -1,4 +1,4 @@
-import { ProductDetailSizeStock } from "../molecules/productDetailSizeStock";
+import { ProductDetailSizeStock } from "../molecules/productDetails/productDetailSizeStock";
 import { Box } from "@mui/material";
 
 const products = [
@@ -10,18 +10,18 @@ const products = [
         color: "黒", // カラー
         image: "/demoStockImage/DemoStockImage.jpg",
         sizes: [
-          { size: "S", stock: true }, // サイズSの在庫あり
-          { size: "M", stock: true }, // サイズMの在庫あり
-          { size: "L", stock: false }, // サイズLの在庫なし
+          { size: "S", stock: "あり" }, // サイズSの在庫あり
+          { size: "M", stock: "残り2点" }, // サイズMの在庫あり
+          { size: "L", stock: "なし" }, // サイズLの在庫なし
         ],
       },
       {
         color: "白",
         image: "/demoStockImage/DemoStockImage.jpg",
         sizes: [
-          { size: "S", stock: false },
-          { size: "M", stock: true },
-          { size: "L", stock: true },
+          { size: "S", stock: "あり" },
+          { size: "M", stock: "あり" },
+          { size: "L", stock: "残り1点" },
         ],
       },
     ],
@@ -34,25 +34,46 @@ const products = [
         color: "黒", // カラー
         image: "/demoStockImage/DemoStockImage.jpg",
         sizes: [
-          { size: "S", stock: true }, // サイズSの在庫あり
-          { size: "M", stock: true }, // サイズMの在庫あり
-          { size: "L", stock: false }, // サイズLの在庫なし
+          { size: "S", stock: "あり" },
+          { size: "M", stock: "あり" },
+          { size: "L", stock: "残り1点" },
         ],
       },
       {
         color: "白",
         image: "/demoStockImage/DemoStockImage.jpg",
         sizes: [
-          { size: "S", stock: false },
-          { size: "M", stock: true },
-          { size: "L", stock: true },
+          { size: "S", stock: "あり" },
+          { size: "M", stock: "あり" },
+          { size: "L", stock: "残り1点" },
         ],
       },
     ],
   },
 ];
 
-const productDetailSizeStockList = () => {
+export const ProductDetailSizeStockList = () => {
+  //IDを指定
+  const ID = "0";
+
+  //IDに一致する商品を取得
+  const product = products.find((product) => product.id === ID);
+
+  if (!product) {
+    return <div>商品が見つかりません</div>;
+  }
+
+  const variations = product.variations.map((variation) => {
+    return {
+      color: variation.color,
+      image: variation.image,
+      sizes: variation.sizes.map((size) => ({
+        size: size.size,
+        stock: size.stock,
+      })),
+    };
+  });
+
   return (
     <Box
       sx={{
@@ -60,15 +81,25 @@ const productDetailSizeStockList = () => {
         flexDirection: "column",
         gap: 1,
         width: "100%",
-        height: "100%",
-        marginTop: "80px",
+        height: "auto",
+        marginTop: "5px",
         justifyContent: "center",
         alignItems: "center",
       }}
     >
-      <ProductDetailSizeStock />
-      <ProductDetailSizeStock />
-      <ProductDetailSizeStock />
+      {variations.map((product, productIndex) => (
+        <Box key={productIndex} sx={{ marginBottom: "10px" }}>
+          {product.sizes.map((size, sizeIndex) => (
+            <ProductDetailSizeStock
+              key={sizeIndex}
+              stockImg={product.image}
+              color={product.color}
+              size={size.size}
+              stock={size.stock}
+            ></ProductDetailSizeStock>
+          ))}
+        </Box>
+      ))}
     </Box>
   );
 };
